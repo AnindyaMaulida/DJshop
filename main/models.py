@@ -6,7 +6,6 @@ class Product(models.Model):
     Kelas = models.CharField(max_length=255)
     Produk = models.IntegerField()
     Alamat = models.TextField()
-    
     Telepon = models.TextField()
-    # description = models.TextField()
+    Description = models.TextField()
     Email = models.TextField()

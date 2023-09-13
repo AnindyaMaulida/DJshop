@@ -2,19 +2,19 @@ Link Adaptable: https://djshopdea.adaptable.app/main/
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
 
-    1. **Membuat Proyek Django Baru**:
+    1. Membuat Proyek Django Baru:
     Pertama adalah membuat proyek Django baru
     saya membuat proyek Django untuk membangun toko dengan memberi nama proyek ini "DJShop" untuk membuat direktori baru dengan menggunakan perintah berikut di terminal:
     
     django-admin startproject DJSHOP
 
-    2. **Membuat Aplikasi "main"**:
+    2. Membuat Aplikasi "main":
     Setelah proyek dibuat, saya membuat aplikasi dengan nama "main" untuk membuat direktori "main" yang akan berisi kode aplikasi yang akan dibuat dengan menggunakan perintah berikut:
     ```
     python manage.py startapp main
     ```
 
-    3. **Melakukan Routing**:
+    3. Melakukan Routing:
     Untuk menjalankan aplikasi "main", kita perlu mengkonfigurasi routing. Untuk itu buka file `urls.py` pada direktori proyek DJSHOP kemudian tambahkan path untuk "main" ke dalam aplikasi seperti ini dengan tujuan untuk mengarahkan permintaan ke dalam "main":
     ```python
     from django.urls import include, path
@@ -24,23 +24,25 @@ Link Adaptable: https://djshopdea.adaptable.app/main/
     ]
     ```
     
-    4. **Membuat Model "Item"**:
+    4. Membuat Model "Item":
     Selanjutnya, di dalam direktori "main", buka file `models.py` dan definisikan model "Item" dengan atribut yang diberikan seperti kode berikut untuk mewakilkan entitas "Item" dengan atribut yang telah ditentukan:
     ```python
     from django.db import models
 
-        # Create your models here.
-        class Product(models.Model):
-            # name = models.CharField(max_length=255)
-            Produk = models.IntegerField()
-            email = models.DateField(auto_now_add=True)
-            telepom = models.IntegerField()
-            description = models.TextField()
-            Email = models.TextField()
+    # Create your models here.
+    class Product(models.Model):
+        Name = models.CharField(max_length=255)
+        Kelas = models.CharField(max_length=255)
+        Produk = models.IntegerField()
+        Alamat = models.TextField()
+        Telepon = models.TextField()
+        Description = models.TextField()
+        Email = models.TextField()
+            
     ```
     
 
-    5. **Membuat Fungsi pada views.py**:
+    5. Membuat Fungsi pada views.py:
     Di dalam direktori "main", buka file `views.py` dan tambahkan fungsi `show_main` seperti berikut untuk mengembalikan template HTML "main.html" dengan konteks yang telah didefinisikan
 
     ```python
@@ -116,3 +118,5 @@ Referensi:
 Surya, B. R. P., Kharisma, A. P., & Yudistira, N. (2020). Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer. Perbandingan Kinerja Pola Perancangan MVC, MVP, Dan MVVM Pada Aplikasi Berbasis Android, Vol. 4, 4089–4095. 
 
 Wijaya, F., Jacobus, A., & Sambul, A. (2023). Jurnal Teknik Elektro dan Komputer. Implementation Of Web Services On University Library Information Systems, Vol. 12, 1–7. 
+
+FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Virtual Environment Pada Low-Cost Virtual Reality Menggunakan Smartphone Dan Virtual Reality Glass, 20–21. 
