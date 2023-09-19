@@ -13,10 +13,12 @@ from django.core import serializers
 
 from main.models import Product
 
+
 # Create your views here.
 
 def show_main(request):
     products = Product.objects.all()
+    Produk = Product.objects.all()
     context = {
         'Name': 'Anindya Maulida Widyatmoko',
         'Kelas': 'PBP A',
@@ -27,7 +29,6 @@ def show_main(request):
         'Email': 'DJShop@tokobagus.com',
         'Telepon' : '012345678',
         'products': products
-
 
     }
 
