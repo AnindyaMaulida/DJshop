@@ -4,6 +4,14 @@ from main.forms import ProductForm, Product
 from django.urls import reverse
 from django.http import HttpResponse
 from django.core import serializers
+from main.forms import ProductForm
+from django.urls import reverse
+from django.http import HttpResponse
+from django.core import serializers
+
+
+
+from main.models import Product
 
 # Create your views here.
 
@@ -14,6 +22,7 @@ def show_main(request):
         'Kelas': 'PBP A',
         'Description' : 'Kami menyediakan produk berkualitas tinggi dengan harga terjangkau sesuai kebutuhan Anda',
         'list_produk': ['Sweater', 'Kaos', 'Jaket', 'Kemeja'],
+        'Produk': ['Sweater', 'Kaos', 'Jaket', 'Kemeja'],
         'Alamat' : 'Jl. Margonda, Depok',
         'Email': 'DJShop@tokobagus.com',
         'Telepon' : '012345678',
