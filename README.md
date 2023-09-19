@@ -1,3 +1,4 @@
+=================Tugas 2================================
 Link Adaptable: https://djshopdea.adaptable.app/main/
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
@@ -120,3 +121,20 @@ Surya, B. R. P., Kharisma, A. P., & Yudistira, N. (2020). Jurnal Pengembangan Te
 Wijaya, F., Jacobus, A., & Sambul, A. (2023). Jurnal Teknik Elektro dan Komputer. Implementation Of Web Services On University Library Information Systems, Vol. 12, 1–7. 
 
 FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Virtual Environment Pada Low-Cost Virtual Reality Menggunakan Smartphone Dan Virtual Reality Glass, 20–21. 
+
+
+
+=================Tugas 3================================
+
+1. Apa perbedaan antara form POST dan form GET dalam Django?
+Form POST dan form GET dalam Django digunakan untuk mengirimkan data dari form HTML ke server. Namun terdapat perbedaan utama antara keduanya adalah cara pengiriman datanya. Form POST mengirimkan data sebagai bagian dari body request, sementara form GET mengirimkan data sebagai query string di URL. 
+kemudian nilai variabel pada form POST tidak ditampilkan pada URL, sedangkan pada form GET nilai variabel ditampilkan pada URL sehingga user dapat memasukkan nilai pada variabel baru. Untuk mengirim data, form POST sering digunakan untuk mengirim data yang sensitif seperti password atau email, sedangkan form GET cocok untuk mengambil data yang tidak sensitif seperti hasil pencarian atau filter. Selain itu, form POST memiliki batasan ukuran data yang lebih besar daripada form GET dimana form GET dibatasi panjang string sampai 2047 karakter karena data dikirim melalui body request, sementara form GET memiliki batasan ukuran data yang lebih kecil karena data dikirim melalui URL. 
+
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+ 
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+referensi:
+Ramadhan, R. (2016, April 29). Penjelasan Singkat tentang POST & GET Django. Gist. https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762 
