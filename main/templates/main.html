@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c04502 (push Tugas 3)
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJSHOP</title>
-    <link rel="stylesheet" href="style.css"> <!-- Hubungkan dengan file CSS Anda -->
+    <link rel="stylesheet"> <!-- Hubungkan dengan file CSS Anda -->
     <style>
         .banner > .container > h2{
             display: flex;
@@ -55,10 +51,6 @@
 
     <footer>
         <div class="container">
-<<<<<<< HEAD
-            <p>&copy; 2023 DJSHOP. Hak Cipta Dilindungi.</p>
-=======
->>>>>>> 7c04502 (push Tugas 3)
             <h5>Name: {{ Name }}</h5>
             <h5>Class: {{ Kelas }}</h5>
         </div>
@@ -67,33 +59,10 @@
 </html>
 
 
-<<<<<<< HEAD
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Jumlah</th>
-        <th>kategori</th>
-        <th>Description</th>
-        <th>Date Added</th>
-    </tr>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for product in Products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.jumlah}}</td>
-            <td>{{product.kategori}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.date_added}}</td>
-
-        </tr>
-    {% endfor %}
-</table>
 
 <br />
 
-=======
 <table border="1">
     <thead>
         <tr>
@@ -119,16 +88,12 @@
 
 <br />
    
->>>>>>> 7c04502 (push Tugas 3)
 <a href="{% url 'main:create_product' %}">
     <button>
         Add New Product
     </button>
 </a>
-<<<<<<< HEAD
 
-=======
 <p>Kamu telah menambahkan {{ products | length }} produk.</p>
->>>>>>> 7c04502 (push Tugas 3)
 
 {% endblock content %}
