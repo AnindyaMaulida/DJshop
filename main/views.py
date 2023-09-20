@@ -1,20 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-<<<<<<< HEAD
 from main.forms import ProductForm, Product
 from django.urls import reverse
 from django.http import HttpResponse
 from django.core import serializers
-=======
-from main.forms import ProductForm
-from django.urls import reverse
-from django.http import HttpResponse
-from django.core import serializers
 
-
-
-from main.models import Product
->>>>>>> 7c04502 (push Tugas 3)
 
 # Create your views here.
 def create_product(request):
@@ -28,17 +18,12 @@ def create_product(request):
     return render(request, "create_product.html", context)
 
 def show_main(request):
-<<<<<<< HEAD
-    Produk = Product.objects.all()
-=======
     products = Product.objects.all()
->>>>>>> 7c04502 (push Tugas 3)
     context = {
         'Name': 'Anindya Maulida Widyatmoko',
         'Kelas': 'PBP A',
         'Description' : 'Kami menyediakan produk berkualitas tinggi dengan harga terjangkau sesuai kebutuhan Anda',
         'list_produk': ['Sweater', 'Kaos', 'Jaket', 'Kemeja'],
-        'products': Produk,
         'Alamat' : 'Jl. Margonda, Depok',
         'Email': 'DJShop@tokobagus.com',
         'Telepon' : '012345678',
@@ -49,7 +34,6 @@ def show_main(request):
 
     return render(request, "main.html", context)
 
-<<<<<<< HEAD
 def create_product(request):
     form = ProductForm(request.POST or None)
 
@@ -63,11 +47,6 @@ def create_product(request):
 def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")    
-=======
-def show_xml(request):
-    data = Product.objects.all()
-    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
->>>>>>> 7c04502 (push Tugas 3)
 
 def show_json(request):
     data = Product.objects.all()
