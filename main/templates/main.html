@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c04502 (push Tugas 3)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +55,10 @@
 
     <footer>
         <div class="container">
+<<<<<<< HEAD
             <p>&copy; 2023 DJSHOP. Hak Cipta Dilindungi.</p>
+=======
+>>>>>>> 7c04502 (push Tugas 3)
             <h5>Name: {{ Name }}</h5>
             <h5>Class: {{ Kelas }}</h5>
         </div>
@@ -61,6 +67,7 @@
 </html>
 
 
+<<<<<<< HEAD
 <table>
     <tr>
         <th>Name</th>
@@ -86,11 +93,42 @@
 
 <br />
 
+=======
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Jumlah</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+        {% for product in products %}
+            <tr>
+                <td>{{ product.Name }}</td>
+                <td>{{ product.Jumlah }}</td>
+                <td>{{ product.Description }}</td>
+                <td>{{ product.date_added }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+   
+
+<br />
+   
+>>>>>>> 7c04502 (push Tugas 3)
 <a href="{% url 'main:create_product' %}">
     <button>
         Add New Product
     </button>
 </a>
+<<<<<<< HEAD
 
+=======
+<p>Kamu telah menambahkan {{ products | length }} produk.</p>
+>>>>>>> 7c04502 (push Tugas 3)
 
 {% endblock content %}

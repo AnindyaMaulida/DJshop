@@ -4,5 +4,8 @@ whitenoise
 psycopg2-binary
 requests
 urllib3
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c04502 (push Tugas 3)
 django-environ

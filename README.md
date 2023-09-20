@@ -1,6 +1,8 @@
 =================Tugas 2================================
 Link Adaptable: https://djshopdea.adaptable.app/main/
 
+=================Tugas 2================================
+
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
 
     1. Membuat Proyek Django Baru:
@@ -122,9 +124,12 @@ Wijaya, F., Jacobus, A., & Sambul, A. (2023). Jurnal Teknik Elektro dan Komputer
 
 FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Virtual Environment Pada Low-Cost Virtual Reality Menggunakan Smartphone Dan Virtual Reality Glass, 20–21. 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 7c04502 (push Tugas 3)
 =================Tugas 3================================
 
 1. Apa perbedaan antara form POST dan form GET dalam Django? Form POST dan form
@@ -306,4 +311,8 @@ FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Vir
 
 
 referensi: Ramadhan, R. (2016, April 29). Penjelasan Singkat tentang POST & GET Django. Gist. https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762
+<<<<<<< HEAD
 M.Kom, S. (2016). DATA COMMUNICATION ANALYSIS WITH XML AND JSON ON WEBSERVICE. Computer Engineering, Science and System Journal, 1(2), 1–6. https://doi.org/10.24114/cess.v1i2.4066 
+=======
+M.Kom, S. (2016). DATA COMMUNICATION ANALYSIS WITH XML AND JSON ON WEBSERVICE. Computer Engineering, Science and System Journal, 1(2), 1–6. https://doi.org/10.24114/cess.v1i2.4066 
+>>>>>>> 7c04502 (push Tugas 3)

@@ -16,6 +16,7 @@ import datetime
 from django.db import models
 
 class Product(models.Model):
+<<<<<<< HEAD
     # Produk = models.IntegerField()
 
     name = models.CharField(max_length=255)
@@ -31,3 +32,9 @@ class Product(models.Model):
         return self.name
     
 
+=======
+    Name = models.CharField(max_length=255)
+    Jumlah = models.IntegerField()
+    Description = models.TextField()
+    date_added = models.DateField(auto_now_add=True)
+>>>>>>> 7c04502 (push Tugas 3)
