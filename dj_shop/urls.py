@@ -20,6 +20,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('main.urls')),
+<<<<<<< HEAD
     path('admin/', admin.site.urls),
    
+=======
+    path('main/', include('main.urls')),
+
+>>>>>>> 7c04502 (push Tugas 3)
 ]
