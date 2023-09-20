@@ -124,15 +124,7 @@ Wijaya, F., Jacobus, A., & Sambul, A. (2023). Jurnal Teknik Elektro dan Komputer
 
 FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Virtual Environment Pada Low-Cost Virtual Reality Menggunakan Smartphone Dan Virtual Reality Glass, 20–21. 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 7c04502 (push Tugas 3)
-=======
->>>>>>> c49b9d5 (Tugas 3 push yaaaaaaz)
 =================Tugas 3================================
 
 1. Apa perbedaan antara form POST dan form GET dalam Django? Form POST dan form
