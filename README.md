@@ -1,4 +1,3 @@
-=================Tugas 2================================
 Link Adaptable: https://djshopdea.adaptable.app/main/
 
 =================Tugas 2================================
@@ -298,16 +297,12 @@ FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Vir
 
 
 
-![gambar HTML](Postman_HTML.png)
-![gambar XML](Postman_XML.png)
-![gambar JSON](Postman_JSON.png)
-![gambar XML by ID](Postman_XML_by_ID.png)
-![gambar JSON by ID](Postman_JSON_by_ID.png)
+![gambar HTML](Tampilan_HTML.png)
+![gambar XML](Tampilan_XML.png)
+![gambar JSON](Tampilan_JSON.png)
+![gambar XML by ID](Tampilan_XML_ID.png)
+![gambar JSON by ID](Tampilan_JSON_ID.png)
 
 
 referensi: Ramadhan, R. (2016, April 29). Penjelasan Singkat tentang POST & GET Django. Gist. https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762
-<<<<<<< HEAD
 M.Kom, S. (2016). DATA COMMUNICATION ANALYSIS WITH XML AND JSON ON WEBSERVICE. Computer Engineering, Science and System Journal, 1(2), 1–6. https://doi.org/10.24114/cess.v1i2.4066 
-=======
-M.Kom, S. (2016). DATA COMMUNICATION ANALYSIS WITH XML AND JSON ON WEBSERVICE. Computer Engineering, Science and System Journal, 1(2), 1–6. https://doi.org/10.24114/cess.v1i2.4066 
->>>>>>> 7c04502 (push Tugas 3)
