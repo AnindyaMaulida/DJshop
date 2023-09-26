@@ -306,3 +306,24 @@ FIRDAUS RUSLI. (2021). Jurnal Kajian Teknologi Pendidikan. Analisis Kualitas Vir
 
 referensi: Ramadhan, R. (2016, April 29). Penjelasan Singkat tentang POST & GET Django. Gist. https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762
 M.Kom, S. (2016). DATA COMMUNICATION ANALYSIS WITH XML AND JSON ON WEBSERVICE. Computer Engineering, Science and System Journal, 1(2), 1–6. https://doi.org/10.24114/cess.v1i2.4066 
+
+
+=================Tugas 4================================
+
+1.  Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+Django UserCreationForm adalah form bawaan Django untuk membuat user baru dengan username dan password. Form ini memiliki validasi dan metode save() yang memudahkan proses pendaftaran. Form ini juga dapat dikustomisasi dengan menambahkan atau mengubah field sesuai kebutuhan.
+
+Namun, form ini juga memiliki beberapa kekurangan, seperti tidak cocok untuk user yang lebih kompleks, tidak memiliki fitur email konfirmasi atau lupa password, dan mungkin tidak sesuai dengan standar atau kebiasaan pengguna di negara atau budaya tertentu.
+
+2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+Authentication adalah proses verifikasi identitas pengguna yang ingin mengakses sistem atau layanan. Tujuan utama dari authentication adalah untuk memastikan bahwa entitas tersebut adalah benar-benar orang, perangkat, atau sistem yang mereka klaim sebagai identitasnya. Dalam proses authentication, pengguna akan diminta untuk memasukkan informasi seperti username dan password, token khusus, atau menggunakan autentikasi biometrik seperti sidik jari atau pemindaian wajah1. Dengan menggunakan mekanisme authentication yang tepat, organisasi dapat memastikan bahwa hanya pengguna yang memiliki akses yang valid yang dapat mengakses informasi sensitif atau melakukan tindakan yang mempengaruhi integritas sistem.
+
+Authorization adalah proses memberikan hak akses kepada pengguna setelah berhasil melewati tahap authentication1. etelah pengguna atau entitas terotentikasi, sistem perlu memutuskan apa yang diizinkan atau dilarang untuk diakses oleh entitas tersebut. Dalam hal ini, authorization berfungsi untuk mengendalikan tingkat akses pengguna ke berbagai bagian sistem atau data. Misalnya, admin memiliki akses lebih tinggi dibandingkan dengan pengguna biasa.
+
+Perbedaan utama antara authentication dan authorization adalah bahwa authentication berkaitan dengan proses verifikasi identitas pengguna, sementara authorization berkaitan dengan pemberian hak akses kepada pengguna2. Dengan menggunakan mekanisme authentication dan authorization yang tepat, organisasi dapat menjaga keamanan dan mengendalikan tingkat akses pengguna dengan efektif.
+
+3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+
+4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Login</title>
+    <style>
+        /* CSS for Login form */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+
+        .login {
+            width: 600px; /* Adjusted the width */
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login table {
+            width: 100%;
+        }
+
+        .login table tr {
+            margin-bottom: 15px;
+        }
+
+        .login table td {
+            padding: 10px; /* Increased padding */
+        }
+
+        .login .form-control {
+            width: calc(100% - 20px); /* Adjusted width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .login .login_btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #679fa0;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login .login_btn:hover {
+            background-color: #71908b;
+        }
+    </style>
+    
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+
+    <h1>Login</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+                    
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input class="btn login_btn" type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}     
+        
+    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+
+</div>
+
+{% endblock content %}

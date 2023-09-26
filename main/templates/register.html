@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+    <style>
+        /* CSS for Register form */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+
+        .register {
+            width: 800px; /* Adjusted width */
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .register h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .register table {
+            width: 100%; /* Table width set to 100% */
+        }
+
+        .register table tr {
+            margin-bottom: 15px;
+        }
+
+        .register table td {
+            padding: 10px;
+        }
+
+        .register .form-control {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .register .register_btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #679fa0;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .register .register_btn:hover {
+            background-color: #71908b;
+        }
+    </style>
+{% endblock meta %}
+
+{% block content %}
+
+<div class="register">
+    <h1>Register</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td><input type="submit" class="register_btn" value="Register"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    Already have an account? <a href="{% url 'main:login' %}">Login here</a>
+</div>
+
+{% endblock content %}

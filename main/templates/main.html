@@ -3,20 +3,143 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJSHOP</title>
-    <link rel="stylesheet"> <!-- Hubungkan dengan file CSS Anda -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <style>
-        .banner > .container > h2{
+        /* Additional inline styles can be added here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .banner {
+            background: url('banner-image.jpg') no-repeat center center;
+            background-size: cover;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        .banner h2 {
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .featured-Produk {
+            padding: 40px 0;
+        }
+
+        .featured-Produk h2 {
+            font-size: 24px;
+        }
+
+        .featured-Produk p {
+            font-size: 16px;
+        }
+
+        .featured-Produk ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .featured-Produk ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            padding: 40px 0;
+            background-color: #f4f4f4;
+        }
+
+        .contact h2 {
+            font-size: 24px;
+        }
+
+        .contact p {
+            font-size: 16px;
+        }
+
+        .contact address p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer h5 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #71908b;
+        }
+
+        th, td {
+            width: 25%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #679fa0;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #71908b;
+        }
+
+        /* Additional styles for buttons */
+        .product-actions {
             display: flex;
-            justify-content: center;
+            align-items: center;
+        }
+
+        .product-actions button {
+            padding: 10px 15px;
+            background-color: #679fa0;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .product-actions button:hover {
+            background-color: #71908b;
         }
     </style>
 </head>
-<body>
 
+<body>
     <div class="banner">
         <div class="container">
             <h2>Selamat datang di DJSHOP!</h2>
@@ -35,67 +158,66 @@
             </ul>
         </div>
     </section>
-    
 
-    <section class="contact">
-        <div class="container">
-            <h2>Hubungi Kami</h2>
-            <p>Jika Anda memiliki pertanyaan atau masukan, jangan ragu untuk menghubungi kami melalui:</p>
-            <address>
-                <p>Alamat: {{ Alamat }}</p>
-                <p>Email: {{ Email }}</p>
-                <p>Telepon: {{ Telepon }}</p>
-            </address>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <h5>Name: {{ Name }}</h5>
-            <h5>Class: {{ Kelas }}</h5>
-        </div>
-    </footer>
-</body>
-</html>
-
-
-<br />
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Jumlah</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-        {% for product in products %}
+    <table>
+        <thead>
             <tr>
-                <td>{{ product.Name }}</td>
-                <td>{{ product.Jumlah }}</td>
-                <td>{{ product.Description }}</td>
-                <td>{{ product.date_added }}</td>
+                <th>Name</th>
+                <th>Jumlah</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>  <!-- Added column for actions -->
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
-   
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.Name }}</td>
+                    <td>
+                        <div class="product-actions">
+                            <form method="POST" action="{% url 'main:add_amount' product.id %}">
+                                {% csrf_token %}
+                                <button type="submit">+</button>
+                            </form>
+                            {{ product.Jumlah }}
+                            <form method="POST" action="{% url 'main:reduce_amount' product.id %}">
+                                {% csrf_token %}
+                                <button type="submit">-</button>
+                            </form>
+                        </div>
+                    </td>
+                    <td>{{ product.Description }}</td>
+                    <td>{{ product.date_added }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'main:delete_product' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete Product</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<br />
+    <br />
 
+    <p>Kamu telah menambahkan {{ products | length }} produk.</p>
 
-<a href="{% url 'main:create_product' %}">
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
 
-    <button>
-        Add New Product
-    </button>
-</a>
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
 
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+</body>
 
-<p>Kamu telah menambahkan {{ products | length }} produk.</p>
-
+</html>
 
 {% endblock content %}

@@ -1,19 +1,162 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h1>Add New Product</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJSHOP - Add New Product</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Additional inline styles can be added here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .banner {
+            background: url('banner-image.jpg') no-repeat center center;
+            background-size: cover;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        .banner h2 {
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .featured-Produk {
+            padding: 40px 0;
+        }
+
+        .featured-Produk h2 {
+            font-size: 24px;
+        }
+
+        .featured-Produk p {
+            font-size: 16px;
+        }
+
+        .featured-Produk ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .featured-Produk ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            padding: 40px 0;
+            background-color: #f4f4f4;
+        }
+
+        .contact h2 {
+            font-size: 24px;
+        }
+
+        .contact p {
+            font-size: 16px;
+        }
+
+        .contact address p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer h5 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #71908b;
+        }
+
+        th, td {
+            width: 50%;
+        }
+
+        button {
+            padding: 10px 40px;
+            background-color: #679fa0;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #71908b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="container">
+            <h2>Add New Product</h2>
+        </div>
+    </div>
+
+    <section class="featured-Produk">
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Add Product" style="width: 100%; background-color: #679fa0; color: white; border: none; cursor: pointer;">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </section>
+
+    <br />
+
+    <a href="{% url 'main:index' %}">
+        <button style="width: 100%">
+            Back to Home
+        </button>
+    </a>
+
+</body>
+
+</html>
 
 {% endblock %}
