@@ -320,10 +320,190 @@ Authentication adalah proses verifikasi identitas pengguna yang ingin mengakses 
 
 Authorization adalah proses memberikan hak akses kepada pengguna setelah berhasil melewati tahap authentication1. etelah pengguna atau entitas terotentikasi, sistem perlu memutuskan apa yang diizinkan atau dilarang untuk diakses oleh entitas tersebut. Dalam hal ini, authorization berfungsi untuk mengendalikan tingkat akses pengguna ke berbagai bagian sistem atau data. Misalnya, admin memiliki akses lebih tinggi dibandingkan dengan pengguna biasa.
 
-Perbedaan utama antara authentication dan authorization adalah bahwa authentication berkaitan dengan proses verifikasi identitas pengguna, sementara authorization berkaitan dengan pemberian hak akses kepada pengguna2. Dengan menggunakan mekanisme authentication dan authorization yang tepat, organisasi dapat menjaga keamanan dan mengendalikan tingkat akses pengguna dengan efektif.
+Perbedaan utama antara authentication dan authorization adalah bahwa authentication berkaitan dengan proses verifikasi identitas pengguna, sementara authorization berkaitan dengan pemberian hak akses kepada pengguna2. Dengan menggunakan mekanisme authentication dan authorization yang tepat, organisasi dapat menjaga keamanan dan mengendalikan tingkat akses pengguna dengan efektif. Keduanya sangat penting untuk mengamankan data pengguna dan sistem dengan membatasi akses hanya pada pengguna yang sah dan berwenang. Selain itu, mempermudah developer dalam menerapkan fungsionalitas login, logout, registrasi, dan reset password dengan menggunakan alat bawaan Django atau pustaka eksternal.
 
 3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+Cookies diciptakan untuk memungkinkan sebuah situs web untuk melacak dan mengingat aktivitas yang telah dilakukan pengguna pada kunjungan sebelumnya, sehingga situs dapat menyediakan pengalaman yang dipersonalisasi dan lebih sesuai dengan preferensi individu saat pengguna kembali mengunjungi situs tersebut. 
+
+Saat pengguna mengunjungi situs web yang menggunakan Django, sebuah cookie ID sesi yang berisi string acak unik ditempatkan di browser pengguna dan terkirim kembali ke server dalam setiap interaksi. Semua informasi sesi disimpan aman di sisi server, baik di database, filesystem, atau cache sesuai dengan konfigurasi sistem. Django mengaitkan cookie ID sesi dengan data sesi menggunakan sebuah dictionary bernama SESSION_ENGINE. Ketika sesi berakhir, baik karena pengguna menutup browser atau mencapai batas waktu sesi, Django menghapus cookie ID sesi dan data sesi terkait. Hal ini meningkatkan keamanan dan privasi data sesi karena hanya ID sesi yang disimpan di browser pengguna. Selain itu, Django menyediakan kenyamanan bagi pengembang dengan objek request.session, memudahkan penyimpanan dan pengambilan data sesi. Terakhir, penggunaan cookies membantu mempercepat kinerja situs web dengan mengirimkan hanya cookie ID sesi yang ukurannya lebih kecil, mengoptimalkan lalu lintas data dan meningkatkan efisiensi keseluruhan situs."
+
 
 4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+Penggunaan cookies dalam pengembangan web membawa aspek keamanan, privasi, dan fungsionalitas yang perlu dipertimbangkan. Meskipun pada umumnya cookies tidak membahayakan dan tidak membawa virus atau malware ke perangkat pengguna, mereka membantu pengguna dalam mengingat kredensial login, preferensi, atau riwayat pencarian di sebuah website. Namun, terdapat risiko potensial yang harus diwaspadai terkait dengan cookies. Pihak ketiga seperti pengiklan atau pelacak dapat menggunakan cookies untuk mengumpulkan dan menganalisis data perilaku pengguna di internet, menimbulkan masalah privasi dan etika. Selain itu, cookies juga dapat dicuri atau dipalsukan oleh pihak yang tidak berwenang, mengakibatkan pencurian identitas, penipuan, atau serangan siber. 
+
+Maka dari itu, penggunaan cookies dalam pengembangan web harus bijak dan bertanggung jawab. Hal-hal yang perlu dilakukan mencakup memberikan informasi kepada pengguna mengenai kebijakan dan tujuan penggunaan cookies di website serta meminta persetujuan mereka sebelum mengirimkan cookies ke browser mereka. Disarankan juga untuk menggunakan cookies sesi yang otomatis terhapus ketika browser ditutup, menghindari cookies pihak ketiga yang tidak relevan atau tidak terpercaya, serta mengenkripsi dan melindungi cookies dengan protokol keamanan yang sesuai, seperti HTTPS atau SSL. Selain itu, membersihkan cookies yang tidak diperlukan atau sudah kedaluwarsa secara berkala juga dianjurkan.
+
 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+    1. **Menjalankan virtual environment**
+    sebelum memulai, menjalankan virtual environment terlebih dahulu
+    2. **Membuat form Registrasi**
+    saya menambahkan fungsi registrasi pada view.py untuk mengatur apabila pengguna ingin registrasi atau membuat akun jika belum mempunyai akun dengan menambahkan kode seperti berikut:
+    ```python
+    def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+    ```
+
+    kemudian setelah membuat fungsi di views saya membuat file html bernama register.html untuk menampilkan tampilan registrasi di website dengan menambahkan css untuk mengatur tampilan pada website nya agar sesuai dengan yang saya inginkan. 
+
+    setelah membuat register.html, sesuaikan url serta import apa saja yang dibutuhkan untuk fungsi registrasi tersebut pada file urls.py.
+
+    3. **Membuat Fungsi Login**
+    Setelah membuat Registrasi, saya membuat fungsi login agar pengguna dapat login dengan akun yang mereka sudah registrasi sebelumnya. saya membuat fungsi login pada file views.py seperti berikut:
+    ```python
+    def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main:show_main')
+        else:
+            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+    ```
+    dan saya juga menambahkan import login. Setelah itu, sama seperti membuat register, setelah saya membuat fungsi login pada views.py saya membuat file html untuk login bernama login.html pada main seperti berikut:
+    ```html
+    {% extends 'base.html' %}
+
+    {% block meta %}
+        <title>Login</title>
+    {% endblock meta %}
+
+    {% block content %}
+
+    <div class = "login">
+
+        <h1>Login</h1>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                </tr>
+                        
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input class="btn login_btn" type="submit" value="Login"></td>
+                </tr>
+            </table>
+        </form>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}     
+            
+        Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+
+    </div>
+
+    {% endblock content %} 
+    ``` 
+
+    saya juga menambahkan css untuk mempercantik tampilan pada web nya. kemudian menyesuaikan url serta import apa saja yang dibutuhkan untuk fungsi login tersebut pada file urls.py.
+
+    4. **Membuat Fungsi Logout**
+    sama seperti fungsi register dan login, pada fungsi logout ini saya menambahkan potongan kode berikut ke views.py
+    ```python
+    def logout_user(request):
+    logout(request)
+    return redirect('main:login')
+    ``` 
+    serta menambahkan import logout. namun pada fungsi Logout ini saya membuat fungsi logout pada html untuk tampilan web nya di main.html seperti berikut:
+
+    ```html
+    ...
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
+    ...
+    ```
+    Setelah itu saya menyesuaikan url serta import apa saja yang dibutuhkan untuk fungsi registrasi tersebut pada file urls.py.
+
+    5. **MMengatur last_login**
+    Untuk mengetes apakah fungsi registrasi, login, dan logout sudah berhasil apa belum. saya mencobanya dengan menjalankan server di local host. Setelah berhasil dijalankan saya menambahkan kode berikut pada fungsi show_main:
+    ```
+    'last_login': request.COOKIES['last_login'],
+    ```
+
+    menambahkan kode berikut pada fungsi logout_user
+    ```
+    response.delete_cookie('last_login')
+    ```
+    dan pada view.py saya menambahkan kode berikut untuk mengecek kapan terakhir kali pengguna login 
+    ```
+    if user is not None:
+        login(request, user)
+        response = HttpResponseRedirect(reverse("main:show_main")) 
+        response.set_cookie('last_login', str(datetime.datetime.now()))
+        return response
+    ```
+
+    yang terakhir untuk menampilan pada web saya menambahkan kode berikut di main.html
+    ```
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+    ```
+
+    6. **Menghubungkan Model Product dengan User**
+    untuk menghubungkan model product dengan user saya menambahkan kode berikut di models.py dan menambahkan import user
+    ```
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ```
+
+    setelah itu saya mengubah fungsi create_product menjadi seperti berikut:
+    ```
+    def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        product = form.save(commit=False)
+        product.user = request.user
+        product.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    ...
+    ```
+    serta saya menambahkan kode berikut untuk menampilkan user mana yang sedang login di bagian context show_main
+    ```
+    'name': request.user.username,
+    ```
+
+    7. **Menjalankan server untuk tampilan web**
+    setelah semua sudah dilakukan saya makemigration dulu untuk pengaplikasian setelah saya melakukan perubahan di file models.py kemudian migrate bakal menerapkan perubahan data tersebut ke basis data
+    setelah selesai saya melakukan 
+    ```
+    gitt add.
+    git commit -m "<..>"
+    git push origin main
+    ```
+    untuk push ke github. 
+
+
+referensi:
+https://www.javatpoint.com/django-usercreationform
+https://glints.com/id/lowongan/cookies-adalah/
+https://alan.co.id/mengenal-apa-itu-django-framework-python-yang-populer/
+https://mediaindonesia.com/weekend/504274/amankah-mengklik-izinkan-cookies-di-setiap-web-yang-anda-satroni

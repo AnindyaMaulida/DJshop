@@ -35,7 +35,7 @@ def show_main(request):
         'Email': 'DJShop@tokobagus.com',
         'Telepon' : '012345678',
         'products': products,
-        'last_login': request.COOKIES['last_login'],
+        'last_login' : request.COOKIES.get('last_login', None)
 
     }
 

@@ -169,6 +169,11 @@
                 <th>Actions</th>  <!-- Added column for actions -->
             </tr>
         </thead>
+        <div class="banner">
+            <div class="container">
+                <h2>Selamat Datang, {{ request.user.username }}!</h2>
+            </div>
+        </div>
         <tbody>
             {% for product in products %}
                 <tr>
