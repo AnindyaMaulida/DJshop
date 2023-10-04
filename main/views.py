@@ -119,13 +119,6 @@ def reduce_amount(request, product_id):
         product.save()
     response = HttpResponseRedirect(reverse("main:show_main")) 
     return response
-    # return render(request, "main.html")
-
-# def delete_product(request, product_id):
-#     product = get_object_or_404(Product, pk=product_id)
-#     product.delete()
-#     response = HttpResponseRedirect(reverse("main:show_main")) 
-#     return response
 
 def edit_product(request, id):
     # Get product berdasarkan ID

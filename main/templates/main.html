@@ -239,7 +239,7 @@
         </div>
         <tbody>
             {% for product in products %}
-                <tr>
+                <tr  {% if forloop.last %}class="latest-item" style = "background-color: #71c1db"{% endif %}>
                     <td>{{ product.Name }}</td>
                     <td>
                         <div class="product-actions">

@@ -505,3 +505,200 @@ https://www.javatpoint.com/django-usercreationform
 https://glints.com/id/lowongan/cookies-adalah/
 https://alan.co.id/mengenal-apa-itu-django-framework-python-yang-populer/
 https://mediaindonesia.com/weekend/504274/amankah-mengklik-izinkan-cookies-di-setiap-web-yang-anda-satroni
+
+
+=================Tugas 5================================
+1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+    Terdapat 3 jenis selector yaitu Element Selector, ID Selector, dan Class Selector.
+    a. Element Selector memberikan gaya pada elemen seperti yang saya gunakan pada kode berikut untuk memberikan beberapa perintah seperti warna, padding, width dan lain lain:
+    ``` css
+    button {
+            padding: 10px 20px;
+            background-color: #334f58; 
+            color: white; 
+            border: none;
+            cursor: pointer;
+        }
+    ```
+    b. ID Selector adalah selector CSS yang memilih elemen HTML sesuai dengan nilai atribut ID yang dimilikinya. Atribut ID harus unik dalam suatu halaman web, untuk menerapkan gaya pada css. contoh :
+
+    ```html
+    <div class="container">
+    ```
+
+    ```css
+    .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    ```
+
+    c. Class Selector adalah selector CSS yang memilih elemen HTML berdasarkan nilai atribut class yang ada pada elemen tersebut untuk mengelompokkan elemen yang mempunyai sifat yang sama. contoh:
+    ```html
+    <div class="banner">
+    ```
+
+    ```css
+     .banner {
+            background: url('banner-image.jpg') no-repeat center center;
+            background-size: cover;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+    ```
+
+2. Jelaskan HTML5 Tag yang kamu ketahui.
+    <title> adalah elemen yang digunakan untuk menentukan judul dokumen HTML
+    <link> adalah elemen yang digunakan untuk memasukkan dokumen HTML dari eksternal, seperti file CSS, ikon favicon, font web, dan lain-lain
+    <header> adalah elemen yang digunakan untuk membuat sebuah header untuk dokumen atau bagian HTML.
+    <tr> elemen digunakan untuk mengelompokkan dan mendefinisikan baris-baris dalam sebuah tabel HTML.
+    <body> elemen yang digunakan sebagai kontainer untuk seluruh konten yang ingin ditampilkan dalam halaman web. Semua elemen yang tampak pada halaman web, seperti teks, gambar, tautan, dan lainnya, ditempatkan di dalam elemen 
+    <section>, masing-masing mengelompokkan konten terkait dalam bagian-bagian yang lebih terdefinisi sesuai dengan tema atau subjeknya.
+
+3. Jelaskan perbedaan antara margin dan padding.
+    Margin adalah jarak luar elemen, mengatur ruang antara elemen dengan elemen lainnya. Properti margin digunakan untuk menentukan jarak di setiap sisi elemen (atas, kanan, bawah, kiri). Sedangkan, padding adalah jarak di dalam elemen, mengatur ruang antara batas elemen dan kontennya. Properti padding digunakan untuk menentukan jarak di setiap sisi elemen (atas, kanan, bawah, kiri). Perbedaan utama adalah margin tidak termasuk dalam ukuran elemen, sementara padding termasuk. Jadi, jika tambah margin, ukuran elemen tetap, namun jaraknya dengan elemen lain bertambah. Namun, jika tambah padding, ukuran elemen bertambah sesuai dengan padding yang ditambahkan.
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+    Dalam Tailwind, kita dapat membuat design antarmuka dengan cara menambahkan kelas-kelas ke elemen HTML. Kita juga memiliki kontrol penuh atas design yang kita inginkan sehingga memiliki design yang unik dibandingkan yang lain. Tailwind memerlukan penulisan kelas yang lebih banyak sehingga memungkinkan kita untuk menghindari overhead dari penulisan kode CSS tambahan yang sering tidak digunakan.
+
+    Dalam Bootstrap, kita dapat membuat antarmuka secara cepat dengan memanfaatkan komponen yang ada. namun, bootstrap memiliki kekurangan yaitu memiliki kustomisasi yang lebih terbatas dan potensi tampilan web yang sama dengan banyak situs web lain yang juga menggunakan Bootstrap.
+
+    Jadi kita dapat menggunakan tailwind jika ingin fleksibilitas desain yang lebih besar dan ingin membangun antarmuka kustom sesuai kebutuhan tanpa harus menuliskan CSS tambahan. Sedangkan, bootstrap cocok untuk proyek yang membutuhkan cepat dan mudah, dengan banyak komponen bawaan.
+
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Pada Tugas kali ini saya menambahkan beberapa, step-step yang saya lakukan 
+1. **Menambahkan Fitur Edit Product**
+saya menambahkan fungsi edit_product pada views.py untuk bisa mengedit product yang sudah di tambahkan dengan kode berikut:
+```python
+def edit_product(request, id):
+        # Get product berdasarkan ID
+        product = Product.objects.get(pk = id)
+
+        # Set product sebagai instance dari form
+        form = ProductForm(request.POST or None, instance=product)
+
+        if form.is_valid() and request.method == "POST":
+            # Simpan form dan kembali ke halaman awal
+            form.save()
+            return HttpResponseRedirect(reverse('main:show_main'))
+
+        context = {'form': form}
+        return render(request, "edit_product.html", context) 
+```
+
+setelah itu saya membuat file html baru dengan nama edit_product.html dengan menambahkan kode berikut:
+```html
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Edit Product</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Edit Product"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
+
+setelah membuat file html tambahkan import edit_product pada file urls.py dan tambahkan path dengan kode berikut:
+```python
+path('edit-product/<int:id>', edit_product name='edit_product'),
+```
+
+serta pada main.html saya menambahkan kode berikut:
+```html
+<td>
+        <a href="{% url 'main:edit_product' product.pk %}">
+            <button>
+                Edit
+            </button>
+        </a>
+    </td>
+```
+
+2.  **Menambahkan Fitur Delete Product**
+Pada penambahan fitur ini sebenarnya saya sudah menambahkan pada tugas sebelumnya, tahapannya sama seperti edit_product namun bedanya ini delet product
+
+3. **Menambahkan Halaman Pricelist.html**
+Dalam Custome halaman web saya menambahkan halaman Pricelist dengan menampilkan harga dan barang. 
+pertama saya membuat file pricelist.html dengan menambahkan kode untuk menambahkan isi gambar, pricelist dan lain lain. 
+setelah itu saya menambahkan kode berikut pada views.py:
+```python
+def pricelist(request):
+    return render(request, 'pricelist.html')
+```
+kemudian pada file urls.py saya menambahkan path dengan kode berikut dan menambahan import pricelist
+```python
+path('pricelist.html', pricelist, name='pricelist_html'),
+```
+
+Namun pada halama pricelist saya belum menyelesaikan tahapan add to cart jadi masih belum berfungsii
+
+4. **Membuat css**
+saya mengedit tampilan web menggunakan css di main.html, login.html, pricelist.html, dan register.html 
+
+saya menyesuaikan tampilan web sesuai dengan yang saya inginkan menggunakan css
+
+5. **Memberikan warna yang berbeda baris terakhir dari item**
+dalam tahap ini saya memberikan warna yang berbeda pada item terakhir yang ditambahkan jika saya menambahkan product baru untuk menjadi pembeda bahwa item tersebut baru ditambahkan. 
+Saya menambahkan kode di main.html dengan kode berikut:
+```html
+ <tr  {% if forloop.last %}class="latest-item" 
+```
+sehingga tampilan table pada main.html saya sebagai berikut:
+
+```html
+      {% for product in products %}
+                <tr  {% if forloop.last %}class="latest-item" style = "background-color: #71c1db"{% endif %}>
+                    <td>{{ product.Name }}</td>
+                    <td>
+                        <div class="product-actions">
+                            <form method="POST" action="{% url 'main:reduce_amount' product.id %}">
+                                {% csrf_token %}
+                                <button type="submit">-</button>
+                            </form>
+                            {{ product.Jumlah }}
+                            
+                            <form method="POST" action="{% url 'main:add_amount' product.id %}">
+                                {% csrf_token %}
+                                <button type="submit">+</button>
+                            </form>
+                        </div>
+
+                        
+                    </td>
+                    <td>{{ product.Description }}</td>
+                    <td>{{ product.date_added }}</td>
+                    <td>
+                        <a href="{% url 'main:delete_product' product.pk %}">
+                            <button>
+                                Delete
+                            </button>
+                        </a>
+                        <a href="{% url 'main:edit_product' product.pk %}">
+                            <button>
+                                Edit
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+```
+    
+setelah semua tahapan selesai saya melakukan add, commit, dan push pada github. 
