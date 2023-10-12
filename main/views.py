@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 from main.forms import ProductForm, Product
 from django.urls import reverse
 from django.http import HttpResponse
@@ -18,6 +18,7 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from main.models import Product
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -160,3 +161,22 @@ def add_to_cart(request, product_id):
 
     # context = {'form': form}
     return render(request, "pricelist.html")
+
+def get_product_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        jumlah = request.POST.get("jumlah")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Product(Name=name, Jumlah=jumlah, Description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

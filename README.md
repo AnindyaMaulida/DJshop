@@ -702,3 +702,46 @@ sehingga tampilan table pada main.html saya sebagai berikut:
 ```
     
 setelah semua tahapan selesai saya melakukan add, commit, dan push pada github. 
+
+
+=================Tugas 6================================
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+Perbedaan antara synchronous dan asynchronous programming terletak pada cara eksekusi tugas. Synchronous bersifat blocking dan linear, yaitu satu tugas harus menunggu yang sebelumnya selesai sebelum merespons input atau kejadian lain. Sehingga tidak efisien dalam memproses tugas-tugas I/O-intensif karena harus menunggu I/O selesai. Asynchronous bersifat non-blocking, tugas-tugas dapat berjalan bersamaan dan  program dapat merespons kejadian yang terjadi saat tugas lain sedang berjalan. Sehingga efisien dalam memproses tugas-tugas I/O-intensif karena dapat melakukan tugas lain selama menunggu I/O.
+
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+Paradigma event-driven merupakan alur ketika mengeksekusi program tidak ditentukan secara linear, melainkan berdasarkan kejadian atau peristiwa (events) yang terjadi. Program akan merespons kejadian-kejadian ini dengan menjalankan tindakan atau fungsi tertentu yang telah ditetapkan sebelumnya. Dalam paradigma ini, program tidak menunggu tindakan selesai sebelum melanjutkan ke tindakan berikutnya. Sebaliknya, program akan merespons kejadian yang terjadi, seperti klik mouse, input pengguna, atau data yang tiba dari jaringan. Hal ini memungkinkan program untuk tetap responsif terhadap interaksi pengguna atau perubahan keadaan sistem.
+
+Contoh penerapannya pada tugas ini adalah saat pengguna mengklik tombol "Add Product" atau tombol "Tambah" pada modal form untuk menambahkan produk baru. Saat tombol ini diklik, event click terpicu, dan fungsi yang telah ditetapkan sebelumnya (seperti addProduct() pada kode JavaScript) akan dijalankan secara otomatis untuk memproses penambahan produk.
+
+3. Jelaskan penerapan asynchronous programming pada AJAX.
+penerapan asynchronous programming pada AJAX di mana kode JavaScript dapat mengirim permintaan (request) ke server tanpa harus menunggu respon dari server. Hal ni bertujuan agar halaman web tetap responsif dan dapat diakses oleh pengguna sementara data atau tindakan diproses di latar belakang.
+
+sebagi contoh saya menerapkan asynchronous programming pada AJAX pada fungsi getProducts() dan refreshProducts(), Anda menggunakan await untuk menunggu hasil dari operasi asynchronous seperti fetch, yang membuat kode ini bekerja secara asynchronous.
+```JavaScript
+ async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<tr>
+            <th>Name</th>
+            <th>Jumlah</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>`
+        products.forEach((item) => {
+            htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.jumlah}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.date_added}</td>
+        </tr>` 
+        })
+        
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+```
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).

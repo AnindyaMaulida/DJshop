@@ -74,159 +74,86 @@
         </div>
     </nav>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Price List</title>
-</head>
-
-<body class="bg-gray-100">
     <div class="container mx-auto p-8">
         <h2 class="text-2xl font-bold mb-8">Price List</h2>
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <!-- Basic Tee - Black -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                        alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Basic Tee (Black)</h3>
-                    <p class="text-sm text-gray-500">Black</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 89000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
+        <div id="productList" class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <!-- Product cards will be dynamically added here -->
+        </div>
 
-            <!-- Basic Tee - White -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg"
-                        alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Basic Tee (White)</h3>
-                    <p class="text-sm text-gray-500">White</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 89000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Basic Tee - Red -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg"
-                        alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Basic Tee (Grey)</h3>
-                    <p class="text-sm text-gray-500">Grey</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 89000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Denim Jacket -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                    alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Denim Jacket</h3>
-                    <p class="text-sm text-gray-500">Blue</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 189000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Jeans -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                    alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Jeans</h3>
-                    <p class="text-sm text-gray-500">Blue</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 179000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Pants -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                    alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Pants</h3>
-                    <p class="text-sm text-gray-500">Black</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 149000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Jacket -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                    alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Jacket</h3>
-                    <p class="text-sm text-gray-500">Gray</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 129000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Sweater -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="aspect-w-3 aspect-h-2 bg-gray-200 mb-4">
-                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                    alt="Product image" class="object-cover object-center">
-                </div>
-                <div class="mb-2">
-                    <h3 class="text-lg font-semibold">Sweater</h3>
-                    <p class="text-sm text-gray-500">Cream</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg font-medium text-gray-900">IDR 149000</p>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add to Cart</button>
-                </div>
-            </div>
-        
         <div class="mt-8">
-          <a href="{% url 'main:show_main' %}" class="bg-black-500 hover:bg-grey-600 text-white font-bold py-2 px-4 rounded">Back to Main</a>
-      </div>
+            <a href="{% url 'main:show_main' %}"
+                class="bg-black-500 hover:bg-grey-600 text-white font-bold py-2 px-4 rounded">Back to Main</a>
+        </div>
     </div>
+
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+
+        async function getCart() {
+            const cart = {};
+            const products = await getProducts();
+
+            // Populate cart with products from main
+            products.forEach((product) => {
+                cart[product.pk] = product.fields.jumlah;
+            });
+
+            return cart;
+        }
+ 
+      let cart = {};  // Objek untuk menyimpan jumlah produk dalam keranjang
+
+      async function getProducts() {
+          return fetch("{% url 'main:get_product_json' %}").then((res) => res.json());
+      }
+
+      async function getCart() {
+      try {
+          const cartData = await getCartFromServer();
+          return cartData;
+      } catch (error) {
+          console.error('Error getting cart data:', error);
+          return {};  // Mengembalikan objek kosong jika terjadi kesalahan
+      }
+  }
+
+      async function refreshProductList() {
+          const products = await getProducts();
+          cart = await getCart();  // Perbarui keranjang saat memuat produk
+
+          const productListDiv = document.getElementById("productList");
+          productListDiv.innerHTML = "";
+
+          products.forEach((product) => {
+              const productCard = document.createElement("div");
+              productCard.classList.add("bg-white", "p-6", "rounded-lg", "shadow-lg");
+
+              const productName = document.createElement("h3");
+              productName.classList.add("text-lg", "font-semibold");
+              productName.textContent = product.fields.name;
+
+              const productDescription = document.createElement("p");  // Ganti color dengan description
+              productDescription.classList.add("text-sm", "text-gray-500");
+              productDescription.textContent = `Description: ${product.fields.description}`;
+
+              const productQuantity = document.createElement("p");
+              productQuantity.classList.add("text-lg", "font-medium", "text-gray-900");
+              const productId = product.pk;
+              productQuantity.textContent = `Jumlah: ${cart[productId] || 0}`;  // Tampilkan jumlah produk dari keranjang
+
+              productCard.appendChild(productName);
+              productCard.appendChild(productDescription);
+              productCard.appendChild(productQuantity);
+
+              productListDiv.appendChild(productCard);
+          });
+      }
+
+      refreshProductList();
+  </script>
 </body>
 
 </html>
