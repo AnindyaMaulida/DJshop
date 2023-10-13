@@ -744,4 +744,136 @@ sebagi contoh saya menerapkan asynchronous programming pada AJAX pada fungsi get
 ```
 4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
 
+Kedua teknologi, Fetch API dan jQuery, digunakan untuk melakukan AJAX (Asynchronous JavaScript and XML) requests dalam pengembangan web. F AJAX dan Fetch API merupakan dua teknologi yang digunakan untuk melakukan permintaan asinkron ke server web tanpa harus memuat ulang halaman. Dari segi kompatibilitas dan berat, Fetch API dapat diakses di semua peramban modern dan memiliki ukuran file yang lebih ringan daripada jQuery. Meskipun jQuery AJAX juga kompatibel dengan hampir semua peramban, ukuran file jQuery yang lebih besar dapat mempengaruhi waktu pemuatan halaman jika tidak dikelola dengan baik. Kedua teknologi memiliki kemampuan untuk melakukan request HTTP dan memungkinkan pengiriman serta penerimaan data dalam berbagai format seperti JSON, XML, dan lainnya. Fetch API menjadi pilihan yang sesuai untuk proyek-proyek modern yang berfokus pada performa dan ingin memanfaatkan standar terbaru dalam JavaScript. Di sisi lain, jQuery AJAX masih banyak digunakan terutama dalam proyek-proyek yang sudah menggunakan jQuery secara luas atau memerlukan integrasi dengan library jQuery lainnya. Masing-masing memiliki dukungan yang kuat dari komunitas web dengan Fetch API sebagai bagian dari standar resmi dari W3C dan jQuery AJAX dengan dukungan komunitas yang besar serta dokumentasi dan tutorial yang melimpah. Pemilihan antara Fetch API dan jQuery AJAX akan bergantung pada kebutuhan dan tujuan spesifik proyek pengembangan web. Jika ingin menggunakan teknologi yang lebih stabil, kompatibel, dan teruji, maka Anda dapat menggunakan AJAX. Namun jika ingin menggunakan teknologi yang lebih simpel, elegan, dan modern, kita dapat menggunakan Fetch API
+
+
+
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+     **Menambahkan product menggunakan AJAX**
+    pada fiile views.py saya menembahkan kode berikut agar bisa add products menggunakan AJAX:
+    ```python 
+    ...
+    @csrf_exempt
+    def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Product(name=name, price=price, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+    ```
+
+    kemudian menambahkan path pada file urls.py 
+    ```python
+    ...
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-product-ajax/', add_product_ajax, name='add_product_ajax')
+    ```
+
+    **Menambahkan script di main.html**
+    saya menambahkan script pada main.html secara asynchronus dengan kode berikut:
+    ```JavaScript
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+        async function refreshProducts() {
+            document.getElementById("product_table").innerHTML = ""
+            const products = await getProducts()
+            let htmlString = `<tr>
+                <th>Name</th>
+                <th>Jumlah</th>
+                <th>Description</th>
+                <th>Date Added</th>
+            </tr>`
+            products.forEach((item) => {
+                htmlString += `\n<tr>
+                <td>${item.fields.name}</td>
+                <td>${item.fields.jumlah}</td>
+                <td>${item.fields.description}</td>
+                <td>${item.fields.date_added}</td>
+            </tr>` 
+            })
+            
+            document.getElementById("product_table").innerHTML = htmlString
+        }
+
+        refreshProducts()
+        async function addProduct() {
+            const formData = new FormData(document.querySelector('#form'));
+            const response = await fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const htmlString = `<tr>
+                    <td>${data.fields.name}</td>
+                    <td>${data.fields.jumlah}</td>
+                    <td>${data.fields.description}</td>
+                    <td>${data.fields.date_added}</td>
+                </tr>`;
+                document.getElementById("product_table").insertAdjacentHTML('beforeend', htmlString);
+            } else {
+                console.error('Failed to add product.');
+            }
+
+            document.getElementById("form").reset();
+            return false;
+        }
+
+        document.getElementById("button_add").onclick = addProduct;
+
+    </script>
+    ``` 
+
+    **Setelah itu membuat Button untuk modal**
+    ```html
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    ```
+
+    **Membuat Modal Form**
+    ```html
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    ```
+
+    **Melakukan Perintah collectstatic**
+    melakukan collecsa=tatic sebelum melakukan `git add .`, `git commit`, dan `git push` dengan kode berikut pada terminal
+    `./manage.py collectstatic -v0 --noinput`

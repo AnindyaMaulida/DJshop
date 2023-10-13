@@ -356,16 +356,31 @@
     }
 
     refreshProducts()
-    function addProduct() {
-        fetch("{% url 'main:add_product_ajax' %}", {
+    async function addProduct() {
+        const formData = new FormData(document.querySelector('#form'));
+        const response = await fetch("{% url 'main:add_product_ajax' %}", {
             method: "POST",
-            body: new FormData(document.querySelector('#form'))
-        }).then(refreshProducts)
+            body: formData,
+        });
 
-        document.getElementById("form").reset()
-        return false
+        if (response.ok) {
+            const data = await response.json();
+            const htmlString = `<tr>
+                <td>${data.fields.name}</td>
+                <td>${data.fields.jumlah}</td>
+                <td>${data.fields.description}</td>
+                <td>${data.fields.date_added}</td>
+            </tr>`;
+            document.getElementById("product_table").insertAdjacentHTML('beforeend', htmlString);
+        } else {
+            console.error('Failed to add product.');
+        }
+
+        document.getElementById("form").reset();
+        return false;
     }
-    document.getElementById("button_add").onclick = addProduct
+
+    document.getElementById("button_add").onclick = addProduct;
 
 </script>
 
