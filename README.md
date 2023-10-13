@@ -876,4 +876,4 @@ Kedua teknologi, Fetch API dan jQuery, digunakan untuk melakukan AJAX (Asynchron
 
     **Melakukan Perintah collectstatic**
     melakukan collecsa=tatic sebelum melakukan `git add .`, `git commit`, dan `git push` dengan kode berikut pada terminal
-    `./manage.py collectstatic -v0 --noinput`
+    `python manage.py collectstatic`

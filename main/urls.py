@@ -3,7 +3,7 @@ from main.views import show_main, create_product, show_xml, show_json, show_xml_
 from main.views import register
 from main.views import login_user #sesuaikan dengan nama fungsi yang dibuat
 from main.views import delete_product
-from main.views import logout_user, add_amount, reduce_amount, delete_product, edit_product, delete_product, pricelist, add_to_cart, get_product_json, add_product_ajax
+from main.views import logout_user, add_amount, reduce_amount, delete_product, edit_product, delete_product, pricelist, get_product_json, add_product_ajax
 
 
 
@@ -24,7 +24,7 @@ urlpatterns = [
     path('edit-product/<int:id>', edit_product, name='edit_product'),
     path('delete/<int:id>', delete_product, name='delete_product'), # sesuaikan dengan nama fungsi yang dibuat
     path('pricelist.html', pricelist, name='pricelist_html'),
-    path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
+    # path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('get-product/', get_product_json, name='get_product_json'),
     path('create-product-ajax/', add_product_ajax, name='add_product_ajax')
 

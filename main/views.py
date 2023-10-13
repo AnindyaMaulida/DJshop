@@ -147,20 +147,6 @@ def delete_product(request, id):
 def pricelist(request):
     return render(request, 'pricelist.html')
 
-def add_to_cart(request, product_id):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        product_name = request.POST.get('product_name')
-        product_price = request.POST.get('product_price')
-
-        # Lakukan logika untuk menambahkan produk ke tabel di sini
-        # Misalnya, jika Anda memiliki model Product, Anda bisa melakukan ini:
-        # product = Product.objects.create(name=product_name, price=product_price)
-
-        return HttpResponseRedirect(reverse('main:show_main'))
-
-    # context = {'form': form}
-    return render(request, "pricelist.html")
 
 def get_product_json(request):
     product_item = Product.objects.all()
